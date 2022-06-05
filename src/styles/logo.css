@@ -1,0 +1,21 @@
+.logo-container{
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    width: 300px;
+    justify-content: center;
+}
+.logo-name-first{
+    font-size: 40px;
+    font-family: "Oxanium";
+    display: flex;
+    align-self: flex-start;
+    padding-left: 10px;
+}
+.logo-name-second{
+    font-size: 32px;
+    font-family: "Oxanium";
+    display: flex;
+    align-self: flex-end;
+    padding-right: 10px;
+}
