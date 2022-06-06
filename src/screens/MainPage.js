@@ -1,13 +1,19 @@
 import React from "react"
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import data from '../mock/data.json'
 import Logo from "../components/logo";
-import data from "../mock/data.json"
 import { Link } from "react-router-dom";
 import book1 from '../utils/images/book1.png'
 import "../styles/mainpage.css"
 
 const MainPage = () => {
-    const [posts, setPosts] = useState(data.posts)
+    const [posts, setPosts] = useState([])
+    const fetchData = () => {
+        fetch('/api/posts').then(res => res.json().then(data => setPosts(data.posts)))
+    }
+    useEffect(() => {
+        fetchData();
+    }, []);
     const [visiblePosts, setVisiblePosts] = useState(6);
     const morePosts = () => {
         setVisiblePosts(visiblePosts + 6);
@@ -61,13 +67,16 @@ const MainPage = () => {
                                 <Link to={`/${post.id}`}>
                                     <div className="load">Load more</div>
                                 </Link>
+
                             </div>
                         </div>
+
                     </div>
+
                 ))}
             </div>
 
-            {visiblePosts < data.posts.length && (
+            {visiblePosts < posts.length && (
                 <button
                     className="loading"
                     onClick={morePosts}
